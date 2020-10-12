@@ -53,8 +53,10 @@ public:
     //output basic details for debug purposes
     std::cout << measures << " " << timeSig[0] << "/" << timeSig[1] << " " << notes[key] << chord << std::endl;
   }
+  //};
 
-
+//class Chords : public Music {
+//public:
     //Generates a random, simple, chord progression.
     std::vector<int> chordProgression(){
       std::vector<int> prog;
@@ -74,15 +76,14 @@ public:
     return prog;
   }
 
-    //get scale of the key
-    std::vector<std::string> newNotes = circle(key);
-    std::vector<int> steps = calculateSteps(scale);
-    std::vector<int> prog = chordProgression();
-
     //This should be in it's own function and return a vector with the scale.
     //it's here for proof of concept
     //This will also need a check for a 7th key. That will be added here
     void genChords(){
+      std::vector<std::string> newNotes = circle(key);
+      std::vector<int> steps = calculateSteps(scale);
+      std::vector<int> prog = chordProgression();
+      //get scale of the key
       std::vector<std::string> possibleChords;
       std::cout << "Order of scale" << std::endl;
       if (scale == 0 || scale == 2){
@@ -126,14 +127,23 @@ public:
     }
 };
 
+class Bar : public Music {
+  struct note {
+    int length;
+    std::string pitch;
+  };
+
+  //std::vector<std::string> genNotes(std::string chord){
+    //Generate notes based on an inputted chord
+    // }
+
+};
 
 
 int main(){
   Music music;
   //Chords chrd;
-  std::cout << "test" << std::endl;
   music.details();
-  //music.genChords();
-  //chrd.genChords();
+  music.genChords();
   return 0;
 }

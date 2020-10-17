@@ -7,18 +7,20 @@ class Music {
 public:
   int measures;
   int timeSig[2] = {4, 4};
-  int key;
-  int scale;
+  //int key;
+  //int scale;
   std::vector<std::string> notes = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
+  std::vector<std::string> orderedNotes;
+  //enum notes{A, A#, B, C, C#, D, D#, E, F, F#, G, "G#"};}
   std::vector<std::string> chords = {"", "m", "7", "m7"};
 
-  struct note {
-    int length;
+  struct Note {
+    float length;
     std::string pitch;
   };
 
   //use the circlular array algorithm to modify the notes vector to start with a given tonic
-  std::vector<std::string> circle(int tonic){
+  std::vector<std::string> circle(int tonic, std::vector<std::string> notes){
     std::vector<std::string> newNotes;
     //Take the tonic and onward and put it at the front of the new vector
     for(int i = tonic; i < notes.size(); i++)
@@ -44,25 +46,12 @@ public:
     return steps;
   }
 
-  //Get all the details for the song
-  void details(){
-    //Setup random numbers
-    srand(time(0));
-    measures = 16;//(std::rand() % 9 + 8);
-    int max = (notes.size());
-    srand(time(0));
-    key = (std::rand() % max);
-    max = (chords.size());
-    scale = std::rand() % max;
-    std::string chord = chords[scale];
-
-    //output basic details for debug purposes
-    std::cout << measures << " " << timeSig[0] << "/" << timeSig[1] << " " << notes[key] << chord << std::endl;
-  }
 };
 
 class Chords : virtual public Music {
 public:
+    std::vector<std::string> possibleChords;
+
     //Generates a random, simple, chord progression.
     std::vector<int> chordProgression(){
       std::vector<int> prog;
@@ -85,12 +74,13 @@ public:
     //This should be in it's own function and return a vector with the scale.
     //it's here for proof of concept
     //This will also need a check for a 7th key. That will be added here
-  std::vector<std::string> genChords(){
-      std::vector<std::string> newNotes = circle(key);
+  std::vector<std::string> genChords(int key, int scale, std::vector<std::string> notes){
+      std::vector<std::string> newNotes = circle(key, notes);
       std::vector<int> steps = calculateSteps(scale);
       std::vector<int> prog = chordProgression();
       //get scale of the key
-      std::vector<std::string> possibleChords;
+      // std::vector<std::string> possibleChords;
+      possibleChords.clear();
       if (scale == 0 || scale == 2){
         for(int i = 0; i < steps.size(); i++){
           switch(i){
@@ -121,46 +111,107 @@ public:
           }
         }
       }
-      std::cout << "Order of scale" << std::endl;
-      for(int i = 0; i < possibleChords.size(); i++){
-        std::cout << possibleChords[i] << std::endl;
-      }
       //Get progression.
       std::vector<std::string> chords_used;
-      std::cout << "Chord Progression" << std::endl;
       for(int i = 0; i < prog.size(); i++){
         chords_used.push_back(possibleChords[prog[i]]);
-        //std::cout << prog[i] + 1 << "   " << possibleChords[prog[i]] << std::endl;
       }
+      orderedNotes = newNotes;
       return chords_used;
     }
 };
 
 class Song : virtual public Music, public Chords {
 public:
-  struct rythm{
-    std::vector<int> range = {1, 2, 3, 4};
-  };
+  int key;
+  int scale;
 
-  struct melody{
-    std::vector<int> range = {4, 5, 6};
-  };
+  //Get all the details for the song
+  void details(){
+    //Setup random numbers
+    measures = 16;//(std::rand() % 9 + 8);
+    std::string chord = chords[scale];
+    genChords(key, scale, notes);
+      //output basic details for debug purposes
+      std::cout << measures << " " << timeSig[0] << "/" << timeSig[1] << " " << notes[key] << chord << std::endl << std::endl;
+  }
+
+  void random_notes(){
+    srand(time(0));
+    for (int i = 0; i < 4; i++){
+      int note_num = rand() % possibleChords.size();
+      std::cout << possibleChords[note_num];
+      std::cout << " Interval: " << note_num << std::endl;
+    }
+    std::cout << std::endl;
+  }
+
+  std::string chord_note(std::string chord){
+    std::string new_chord = "aa";
+    new_chord[0] = chord.front();
+    if(chord[1]){
+      switch(chord[1]){
+        case '#':
+          new_chord[1] = '#';
+          break;
+      default:
+        new_chord = new_chord[0];
+      }
+    } else {
+      return new_chord.erase(1);
+    }
+    return new_chord;
+  }
+
+  //return a vector of notes based on an inputted chord.
+  //input chord -> generate notes that work in that chord (just genChords again) -> pick random notes in there -> return that vector
+  std::vector<std::string> measure(std::string chord){
+    std::vector<std::string> test_notes;
+    std::vector<std::string> notes_played;
+    for (int i = 0; i < notes.size(); i++){
+      if(chord_note(chord) == notes[i]){
+        std::cout << "Found Chord: ";
+        std::cout << chord_note(chord);
+        std::cout << " at: " << i << std::endl;
+        genChords(i, scale, orderedNotes);
+        random_notes();
+      }
+    }
+    //std::cout << "Random note test" << std::endl;
+    return notes_played;
+  }
 
   void test(){
     details();
-    std::vector<std::string> chords = genChords();
-    for(int i; i < chords.size(); i++){
-      std::cout << chords[i] << std::endl;
+    std::vector<std::string> chrds = genChords(key, scale, notes);
+    for(int i = 0; i < chrds.size(); i++){
+      measure(chrds[i]);
     }
+    std::cout << std::endl;
+    std::cout << "Chord Progression" << std::endl;
+    for(int i = 0; i < chrds.size(); i++){
+      std::cout << chrds[i] << std::endl;
+    }
+    std::cout << std::endl;
+    /* This exists for debug purposes
+    std::cout << "Order of scale" << std::endl;
+    for(int i = 0; i < possibleChords.size(); i++){
+      std::cout << possibleChords[i] << std::endl;
+    }
+    //std::cout << "Random note test" << std::endl;
+    //std::vector<std::string> notes = measure(6);
+    for(int i = 0; i < notes.size(); i++){
+      std::cout << notes[i] << std::endl;
+      }*/
   }
 };
 
 int main(){
-  //Music music;
-  //Chords chrd;
-  //music.details();
-  //music.genChords();
   Song song;
+  srand(time(0));
+  song.key = (std::rand() % song.notes.size());
+  srand(time(0));
+  song.scale = (std::rand() % song.chords.size());
   song.test();
   return 0;
 }

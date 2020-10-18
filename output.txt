@@ -1,0 +1,104 @@
+16 4/4 B7 107bpm
+
+Found Chord: B at: 2
+C for 2 beats at Interval: 7| Pitch: 6
+C for 2 beats at Interval: 7| Pitch: 5
+
+Found Chord: B at: 2
+D for 1 beats at Interval: 6| Pitch: 6
+A# for 1 beats at Interval: 4| Pitch: 5
+G# for 2 beats at Interval: 3| Pitch: 4
+
+Found Chord: B at: 2
+A for 0.5 beats at Interval: 2| Pitch: 5
+F for 2 beats at Interval: 0| Pitch: 5
+E for 1 beats at Interval: 7| Pitch: 5
+A for 0.5 beats at Interval: 2| Pitch: 6
+
+Found Chord: B at: 2
+A for 0.5 beats at Interval: 1| Pitch: 6
+G for 1 beats at Interval: 0| Pitch: 6
+F# for 1 beats at Interval: 6| Pitch: 5
+G for 2 beats at Interval: 0| Pitch: 4
+
+Found Chord: G# at: 11
+D# for 0.5 beats at Interval: 5| Pitch: 4
+F# for 0.5 beats at Interval: 0| Pitch: 4
+F for 0.5 beats at Interval: 6| Pitch: 4
+G# for 0.5 beats at Interval: 1| Pitch: 5
+F# for 0.5 beats at Interval: 0| Pitch: 6
+A# for 1 beats at Interval: 2| Pitch: 4
+B for 0.5 beats at Interval: 3| Pitch: 5
+
+Found Chord: G# at: 11
+A# for 1 beats at Interval: 3| Pitch: 6
+D for 1 beats at Interval: 5| Pitch: 6
+F for 1 beats at Interval: 0| Pitch: 4
+E for 1 beats at Interval: 6| Pitch: 6
+
+Found Chord: G# at: 11
+C# for 1 beats at Interval: 5| Pitch: 5
+B for 0.5 beats at Interval: 4| Pitch: 5
+D# for 0.5 beats at Interval: 7| Pitch: 4
+G# for 0.5 beats at Interval: 2| Pitch: 6
+B for 1 beats at Interval: 4| Pitch: 4
+E for 1 beats at Interval: 0| Pitch: 4
+
+Found Chord: G# at: 11
+A# for 1 beats at Interval: 4| Pitch: 5
+G# for 1 beats at Interval: 3| Pitch: 6
+D for 1 beats at Interval: 6| Pitch: 4
+C for 0.5 beats at Interval: 5| Pitch: 6
+D for 2 beats at Interval: 7| Pitch: 5
+
+Found Chord: C# at: 4
+E for 1 beats at Interval: 5| Pitch: 4
+D for 2 beats at Interval: 4| Pitch: 5
+E for 1 beats at Interval: 5| Pitch: 5
+
+Found Chord: C# at: 4
+B for 0.5 beats at Interval: 0| Pitch: 5
+B for 2 beats at Interval: 0| Pitch: 4
+E for 0.5 beats at Interval: 3| Pitch: 4
+G# for 1 beats at Interval: 5| Pitch: 4
+
+Found Chord: C# at: 4
+G for 0.5 beats at Interval: 2| Pitch: 4
+F for 1 beats at Interval: 1| Pitch: 5
+F for 1 beats at Interval: 1| Pitch: 6
+G for 1 beats at Interval: 2| Pitch: 4
+D for 1 beats at Interval: 6| Pitch: 4
+
+Found Chord: C# at: 4
+G for 2 beats at Interval: 0| Pitch: 6
+B for 2 beats at Interval: 2| Pitch: 6
+
+Found Chord: F# at: 9
+D# for 1 beats at Interval: 6| Pitch: 6
+F# for 2 beats at Interval: 1| Pitch: 6
+F# for 1 beats at Interval: 1| Pitch: 5
+
+Found Chord: F# at: 9
+D# for 2 beats at Interval: 1| Pitch: 4
+F for 0.5 beats at Interval: 2| Pitch: 4
+A# for 1 beats at Interval: 5| Pitch: 4
+A# for 2 beats at Interval: 5| Pitch: 4
+
+Found Chord: F# at: 9
+F for 2 beats at Interval: 4| Pitch: 4
+F for 2 beats at Interval: 4| Pitch: 5
+
+Found Chord: F# at: 9
+A for 0.5 beats at Interval: 1| Pitch: 4
+B for 1 beats at Interval: 2| Pitch: 5
+B for 0.5 beats at Interval: 2| Pitch: 6
+F# for 0.5 beats at Interval: 7| Pitch: 4
+B for 0.5 beats at Interval: 2| Pitch: 6
+C for 1 beats at Interval: 3| Pitch: 6
+
+
+Chord Progression
+B
+G#m
+C#m
+F#

@@ -183,14 +183,16 @@ public:
   std::vector<std::string> measure(std::string chord){
     std::vector<std::string> test_notes;
     std::vector<std::string> notes_played;
-    for (int i = 0; i < notes.size(); i++){
-      if(chord_note(chord) == notes[i]){
-        std::cout << "Found Chord: ";
-        std::cout << chord_note(chord);
-        std::cout << " at: " << i << std::endl;
-        genChords(i, scale, orderedNotes);
-        random_notes();
-        sleep(2);
+    for(int bars = 0; bars < 4; bars++){
+      for (int i = 0; i < notes.size(); i++){
+        if(chord_note(chord) == notes[i]){
+          std::cout << "Found Chord: ";
+          std::cout << chord_note(chord);
+          std::cout << " at: " << i << std::endl;
+          genChords(i, scale, orderedNotes);
+          random_notes();
+          sleep(2);
+        }
       }
     }
     //std::cout << "Random note test" << std::endl;

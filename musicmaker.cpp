@@ -144,7 +144,8 @@ public:
   void random_notes(){
     srand(time(0));
     float time = 0;
-    std::vector<float> rythm = {0.5, 1};
+    std::vector<float> rythm = {0.5, 1, 2};
+    std::vector<int> range = {4, 5, 6};
     while(time != timeSig[beats] || time > timeSig[beats]){
       if(time > timeSig[beats]){
         break;
@@ -153,7 +154,8 @@ public:
         int note_num = rand() % possibleChords.size();
         std::cout << chord_note(possibleChords[note_num]);
         std::cout << " for " << duration << " beats ";
-        std::cout << "at Interval: " << note_num << std::endl;
+        std::cout << "at Interval: " << note_num;
+        std::cout << "| Pitch: " << range[rand() % range.size()] << std::endl;
         time += duration;
       }
       //std::cout << time << " " << duration << std::endl; if this line is here, it just goes indefinetly?

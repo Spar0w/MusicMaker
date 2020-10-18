@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string.h>
 #include <ctime>
+#include <unistd.h>
 #include <vector>
 
 class Music {
 public:
   int measures;
-  int timeSig[2] = {4, 4};
+  int timeSig[3] = {3, 4, 4};
   //int key;
   //int scale;
   std::vector<std::string> notes = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
@@ -125,23 +126,37 @@ class Song : virtual public Music, public Chords {
 public:
   int key;
   int scale;
+  int beats;
 
   //Get all the details for the song
   void details(){
+    int tempo = rand() % 30 + 80;
+    srand(time(0) * rand() % 10);
+    beats = rand() % 2;
     //Setup random numbers
     measures = 16;//(std::rand() % 9 + 8);
     std::string chord = chords[scale];
     genChords(key, scale, notes);
       //output basic details for debug purposes
-      std::cout << measures << " " << timeSig[0] << "/" << timeSig[1] << " " << notes[key] << chord << std::endl << std::endl;
+    std::cout << measures << " " << timeSig[beats] << "/" << timeSig[2] << " " << notes[key] << chord << " " << tempo << "bpm" << std::endl << std::endl;
   }
 
   void random_notes(){
     srand(time(0));
-    for (int i = 0; i < 4; i++){
-      int note_num = rand() % possibleChords.size();
-      std::cout << possibleChords[note_num];
-      std::cout << " Interval: " << note_num << std::endl;
+    float time = 0;
+    std::vector<float> rythm = {0.5, 1};
+    while(time != timeSig[beats] || time > timeSig[beats]){
+      if(time > timeSig[beats]){
+        break;
+      } else {
+        float duration = rythm[rand() % rythm.size()];
+        int note_num = rand() % possibleChords.size();
+        std::cout << chord_note(possibleChords[note_num]);
+        std::cout << " for " << duration << " beats ";
+        std::cout << "at Interval: " << note_num << std::endl;
+        time += duration;
+      }
+      //std::cout << time << " " << duration << std::endl; if this line is here, it just goes indefinetly?
     }
     std::cout << std::endl;
   }
@@ -175,6 +190,7 @@ public:
         std::cout << " at: " << i << std::endl;
         genChords(i, scale, orderedNotes);
         random_notes();
+        sleep(2);
       }
     }
     //std::cout << "Random note test" << std::endl;

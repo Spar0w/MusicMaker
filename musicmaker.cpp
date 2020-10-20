@@ -145,7 +145,7 @@ public:
     srand(time(0));
     float time = 0;
     std::vector<float> rythm = {0.5, 1, 2};
-    std::vector<int> range = {4, 5, 6};
+    std::vector<int> range = {4, 5};
     while(time != timeSig[beats] || time > timeSig[beats]){
       if(time > timeSig[beats]){
         break;
@@ -185,7 +185,7 @@ public:
   std::vector<std::string> measure(std::string chord){
     std::vector<std::string> test_notes;
     std::vector<std::string> notes_played;
-    for(int bars = 0; bars < 4; bars++){
+    //for(int bars = 0; bars < 4; bars++){
       for (int i = 0; i < notes.size(); i++){
         if(chord_note(chord) == notes[i]){
           std::cout << "Found Chord: ";
@@ -196,7 +196,7 @@ public:
           sleep(2);
         }
       }
-    }
+      //}
     //std::cout << "Random note test" << std::endl;
     return notes_played;
   }
@@ -204,8 +204,10 @@ public:
   void test(){
     details();
     std::vector<std::string> chrds = genChords(key, scale, notes);
-    for(int i = 0; i < chrds.size(); i++){
-      measure(chrds[i]);
+    for(int bars = 0; bars < 4; bars++){
+      for(int i = 0; i < chrds.size(); i++){
+        measure(chrds[i]);
+      }
     }
     std::cout << std::endl;
     std::cout << "Chord Progression" << std::endl;
